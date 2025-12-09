@@ -12,11 +12,25 @@ spec:
             operator: In
             values:
             - us-east-1d
-          - key: eshwar
+          # - key: eshwar
+          #   operator: In
+          #   values:
+          #   - dev
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: project
             operator: In
             values:
-            - dev
-
+            - amazon
+      - weight: 10
+        preference:
+          matchExpressions:
+          - key: project
+            operator: In
+            values:
+            - roboshop
   containers:
   - name: nginx
     image: nginx
